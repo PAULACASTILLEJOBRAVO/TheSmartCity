@@ -13,7 +13,7 @@ export default function Test() {
 
 
     useEffect(() => {
-        axios.get('https://thesmartcity.onrender.com/test')
+        axios.get('https://anthemmanifest.onrender.com/test')
             .then((resultado) => {
                 const data = resultado.data;
                 
