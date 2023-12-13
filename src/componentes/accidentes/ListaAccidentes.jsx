@@ -3,14 +3,8 @@ import axios from 'axios';
 import Header from '../header';
 import Footer from '../footer';
 import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TablePagination from '@mui/material/TablePagination';
-import Paper from '@mui/material/Paper';
+import {Table, TableBody, TableCell, tableCellClasses, TableContainer, TableHead, TableRow, TablePagination, Paper, CircularProgress, Box} from '@mui/material';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -37,7 +31,7 @@ export default function Test() {
     const [rowPerPage, setRowPerPage] = useState(5000);
 
     useEffect(() => {
-        axios.get('https://anthemmanifest.onrender.com/test')
+        axios.get('https://anthemmanifest.onrender.com/accidentalidad')
             .then((resultado) => {
                 setRows(resultado.data);
             }, [])
@@ -52,7 +46,54 @@ export default function Test() {
         setPage(0);
     }
 
-    return (
+    return rows.length === 0 ? (
+        <div style={{ textAlign: "center" }}>
+            <Header />
+            <br />
+            <br />
+            <br />
+            <h1>Accidentes</h1>
+            <Paper sx={{ width: '90%', marginLeft: '5%' }}>
+                <TableContainer component={Paper} sx={{maxHeight: 450}}>
+                    <Table sx={{minWidth: 700 }} aria-label="customized table" >
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell align="right">Fecha</StyledTableCell>
+                                <StyledTableCell align="right">Hora</StyledTableCell>
+
+                                <StyledTableCell align="right">Localización</StyledTableCell>
+                                <StyledTableCell align="right">Distrito</StyledTableCell>
+
+
+                                <StyledTableCell align="right">Tipo de accidente</StyledTableCell>
+                                <StyledTableCell align="right">Estado meteorológico</StyledTableCell>
+
+                                <StyledTableCell align="right">Sexo</StyledTableCell>
+                                <StyledTableCell align="right">Rango de edad</StyledTableCell>
+
+                                <StyledTableCell align="right">Alcoholemia</StyledTableCell>
+                                <StyledTableCell align="right">Examen toxicológico</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                    </Table>
+                    <Box sx={{ display: 'flex'}} style={{justifyContent: 'center'}}>
+                        <CircularProgress color='success'/>
+                    </Box>
+                    <TablePagination
+                            rowsPerPageOptions={[5000, 10000, 20000, 30000, 40000]}
+                            page={page}
+                            count={rows.length}
+                            rowsPerPage={rowPerPage}
+                            component="div"
+                            onPageChange={handleChangePage}
+                            onRowsPerPageChange={handleRowsPerPage}
+                        />
+                </TableContainer>
+            </Paper>
+            <br />
+            <Footer />
+        </div>
+    ):(
         <div style={{ textAlign: "center" }}>
             <Header />
             <br />
@@ -64,25 +105,47 @@ export default function Test() {
                     <Table sx={{ minWidth: 700 }} aria-label="customized table" stickyHeader>
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell>Id</StyledTableCell>
                                 <StyledTableCell align="right">Fecha</StyledTableCell>
                                 <StyledTableCell align="right">Hora</StyledTableCell>
+
+                                <StyledTableCell align="right">Localización</StyledTableCell>
+                                <StyledTableCell align="right">Distrito</StyledTableCell>
+
+
+                                <StyledTableCell align="right">Tipo de accidente</StyledTableCell>
+                                <StyledTableCell align="right">Estado meteorológico</StyledTableCell>
+
                                 <StyledTableCell align="right">Sexo</StyledTableCell>
                                 <StyledTableCell align="right">Rango de edad</StyledTableCell>
+
+
+                                <StyledTableCell align="right">Alcoholemia</StyledTableCell>
+                                <StyledTableCell align="right">Examen toxicológico</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {rows.slice(page * rowPerPage, page * rowPerPage + rowPerPage).map((row) => (
-                                <StyledTableRow key={row.num_expediente}>
-                                    <StyledTableCell component="th" scope="row">{row._id}</StyledTableCell>
+                                <StyledTableRow key={row._id}>
                                     <StyledTableCell align="right">{row.fecha}</StyledTableCell>
                                     <StyledTableCell align="right">{row.hora}</StyledTableCell>
+
+                                    <StyledTableCell component="th" scope="row">{row.localizacion}</StyledTableCell>
+                                    <StyledTableCell component="th" scope="row">{row.distrito}</StyledTableCell>
+                                    
+                                    <StyledTableCell component="th" scope="row">{row.tipo_accidente}</StyledTableCell>
+                                    <StyledTableCell component="th" scope="row">{row.estado_meteorologico}</StyledTableCell>
+                                    
+
                                     <StyledTableCell align="right">{row.sexo}</StyledTableCell>
                                     <StyledTableCell align="right">{row.rango_edad}</StyledTableCell>
+
+                                    <StyledTableCell align="right">{row.positivo_alcohol}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.positivo_droga}</StyledTableCell>
                                 </StyledTableRow>
                             ))}
                         </TableBody>
-                        <TablePagination
+                    </Table>
+                    <TablePagination
                             rowsPerPageOptions={[5000, 10000, 20000, 30000, 40000]}
                             page={page}
                             count={rows.length}
@@ -91,7 +154,6 @@ export default function Test() {
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleRowsPerPage}
                         />
-                    </Table>
                 </TableContainer>
             </Paper>
             <br />
