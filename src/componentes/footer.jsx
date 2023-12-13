@@ -43,16 +43,16 @@ export default function App() {
                 </MDBCol>
                 
                 <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
-                <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
+                <h6 className=' fw-bold mb-4'>Contáctanos</h6>
                 <p>
                     <MDBIcon icon="envelope" className="me-3" />
                     thesmartcity@gmail.com
                 </p>
                 <p>
-                    <MDBIcon icon="phone" className="me-3" /> +34  643 567 88
+                    <MDBIcon icon="phone" className="me-3" /> +34  643 56 07 88
                 </p>
                 <p>
-                    <MDBIcon icon="print" className="me-3" /> +34 643 567 89
+                    <MDBIcon icon="print" className="me-3" /> +34 643 56 07 89
                 </p>
                 </MDBCol>
             </MDBRow>

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
+import {AppBar, Toolbar} from '@mui/material';
+import {Button} from 'reactstrap';
 import LongMenu from './menu'
 
 export default function header() {
@@ -9,9 +8,9 @@ export default function header() {
 		<AppBar color='success'>
 			<Toolbar>
 				<LongMenu/>
-				<Button href='/Accidentes' color="inherit">Accidentes</Button>
-        		<Button href='/Bicicletas' color="inherit">Bicicletas</Button>
-        		<Button href='/Patinetes' color="inherit">Patinetes</Button>
+				<Button href='/Accidentes' color="inherit" className='text-light'>Accidentes</Button>
+        		<Button href='/Bicicletas' color="inherit" className='text-light'>Bicicletas</Button>
+        		<Button href='/Patinetes' color="inherit" className='text-light'>Patinetes</Button>
 			</Toolbar>
 		</AppBar>
 	);

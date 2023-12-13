@@ -1,15 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import '../../src/App.css';
-import Test from './accidentes/ListaAccidentes';
+import Accidentes from './accidentes/ListaAccidentes';
 import Home from './home';
+import Patinetes from './patinetes/ListaPatinetes';
 
 function App() {
   return (
-    <div className="App">ç
+    <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/accidentes' element={<Test/>}/>
-          <Route path='/home' element={<Home/>}/>
+          <Route path='/Accidentes' element={<Accidentes/>}/>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/Patinetes' element={<Patinetes/>}/>
         </Routes>
       </BrowserRouter>
     </div>
