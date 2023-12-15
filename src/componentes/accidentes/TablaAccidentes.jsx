@@ -25,7 +25,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-export default function Test() {
+export default function TablaAccidente() {
     const [rows, setRows] = useState([]);
     const [page, setPage] = useState(0);
     const [rowPerPage, setRowPerPage] = useState(5000);
@@ -49,10 +49,7 @@ export default function Test() {
     return rows.length === 0 ? (
         <div style={{ textAlign: "center" }}>
             <Header />
-            <br />
-            <br />
-            <br />
-            <h1>Accidentes</h1>
+            <h1 style={{paddingTop: "2%", paddingBottom: "3%"}}>Accidentes</h1>
             <Paper sx={{ width: '90%', marginLeft: '5%' }}>
                 <TableContainer component={Paper} sx={{maxHeight: 450}}>
                     <Table sx={{minWidth: 700 }} aria-label="customized table" >
@@ -96,10 +93,7 @@ export default function Test() {
     ):(
         <div style={{ textAlign: "center" }}>
             <Header />
-            <br />
-            <br />
-            <br />
-            <h1>Accidentes</h1>
+            <h1 style={{paddingTop: "2%", paddingBottom: "3%"}}>Accidentes</h1>
             <Paper sx={{ width: '90%', marginLeft: '5%' }}>
                 <TableContainer component={Paper} sx={{maxHeight: 450}}>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table" stickyHeader>

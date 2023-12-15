@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../header';
 import Footer from '../footer';
-import Box from '@mui/material/Box';
-import LinearProgress from '@mui/material/LinearProgress';
 import { styled, ThemeProvider, createTheme } from '@mui/material/styles';
-import {Paper, List, ListItem, ListItemText, ListSubheader, ListItemButton, Grid, Divider } from '@mui/material';
+import {Box, Paper, List, ListItemText, ListSubheader, ListItemButton, Grid } from '@mui/material';
 import { KeyboardArrowDown } from '@mui/icons-material';
 import TarjetaPatinete from './TarjetaPatinete';
 
@@ -16,10 +14,11 @@ const Nav = styled(List)({
     }
   });
 
-export default function Test() {
+export default function ListaPatinetes() {
     const [datas, setDatas] = useState([]);
     const [open, setOpen] = useState(true);
     const [patinetes, setPatinetes] = useState(true);
+    const [barrio, setBarrio] = useState(true);
 
     useEffect(() => {
         axios.get('https://anthemmanifest.onrender.com/asignacionPatinetes')
@@ -31,47 +30,65 @@ export default function Test() {
     const handleListItemClick = (event) => () => {
         console.log(event);
         setPatinetes(event);
+        setBarrio(event.BARRIO);
     };
-    
+
+    const a = (barrio) => {
+        if(barrio === true){
+           return <h3>Compañías de patinetes disponibles  </h3>
+        }
+        return <h3>Compañías de patinetes disponibles en {barrio} </h3>
+    }
+
+    const sinTotales = (item) => {
+        if(item.BARRIO !== "Total" && item.DISTRITO === "CENTRO"){
+            return (<ListItemButton
+                    key={`${item._id}${item}`}
+                    sx={{ py: 0, minHeight: 20, color: 'rgba(255,255,255,.8)' }}
+                    onClick={handleListItemClick(item)}
+                >
+                    <ListItemText 
+                        primary={item.BARRIO} 
+                        primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}
+                    />
+                </ListItemButton>
+            )
+        }
+        
+        return <></>
+    }
 
     return datas.length === 0 ? (
         <div style={{ textAlign: "center" }}>
             <Header />
-            <br/>
-            <br/>
-            <br/>
-            <h1>Patinetes</h1>
-            <LinearProgress/>
+            <h1 style={{paddingTop: "2%", paddingBottom: "3%"}}>Patinetes</h1>
+            <h3 style={{color: 'blue'}}>Loading...</h3>
             <br/>
             <Footer /> 
         </div> 
     ):(
         <div style={{ textAlign: "center" }}>
             <Header />
-            <br />
-            <br />
-            <br />
-            <h1>Patinetes</h1>
-            <br/>
-                <Nav component="nav" disablePadding>
-                    <ThemeProvider
-                        theme={createTheme({
-                        components: {
-                            MuiListItemButton: {
+            <h1 style={{paddingTop: "2%", paddingBottom: "2%"}}>Patinetes</h1>
+            <Nav component="nav" disablePadding>
+                <ThemeProvider
+                    theme={createTheme({
+                    components: {
+                        MuiListItemButton: {
                             defaultProps: {
                                 disableTouchRipple: true,
                             },
-                            },
                         },
-                        palette: {
-                            mode: 'dark',
-                            primary: { main: 'rgb(102, 157, 246)' },
-                            background: { paper: 'rgb(5, 30, 52)' },
-                        },
-                        })}
-                    >
-                        <Grid container spacing={2}>
-                        <Grid xs={{maxWidth: 256}}>
+                    },
+                    palette: {
+                        mode: 'dark',
+                        primary: { main: 'rgb(102, 157, 246)' },
+                        background: { paper: 'rgb(5, 30, 52)' },
+                    },
+                    })}
+                >
+                    <Grid container spacing={1} >
+                        <Grid item lg="3"  xs="3">
                             <Paper elevation={0} sx={{ maxWidth: 256 }}>
                                 <Box
                                     sx={{
@@ -83,6 +100,7 @@ export default function Test() {
                                         alignItems="flex-start"
                                         onClick={() => setOpen(!open)}
                                         sx={{
+                                            minWidth: 256,
                                             px: 3,
                                             pt: 2.5,
                                             pb: open ? 0 : 2.5,
@@ -108,57 +126,39 @@ export default function Test() {
                                             }}
                                         />
                                     </ListItemButton>
-                                    {/* {open && datas.map((data) => (
-                                            
-                                    ))} */}
-
                                     <List
                                         sx={{
-                                        width: '100%',
-                                        maxWidth: 360,
-                                        bgcolor: 'background.paper',
-                                        position: 'relative',
-                                        overflow: 'auto',
-                                        maxHeight: 300,
-                                        '& ul': { padding: 0 },
-                                    }}
-                                    subheader={<li />}
+                                            width: '100%',
+                                            maxWidth: 256,
+                                            bgcolor: 'background.paper',
+                                            position: 'relative',
+                                            overflow: 'auto',
+                                            maxHeight: 600,
+                                            '& ul': { padding: 0 },
+                                        }}
+                                        subheader={<li />}
                                     >
                                     {open && datas.map((data) => (
                                         <li key={data._id}>
                                         <ul>
                                             <ListSubheader>{data.DISTRITO}</ListSubheader>
-                                            {datas.map((item) => (
-                                            // <ListItem key={`${item._id}${item}`}>
-                                            //     <ListItemText primary={item.BARRIO} />
-                                            // </ListItem>
-                                            <ListItemButton
-                                                key={`${item._id}${item}`}
-                                                sx={{ py: 0, minHeight: 20, color: 'rgba(255,255,255,.8)' }}
-                                                onClick={handleListItemClick(item)}
-                                            >
-                                                <ListItemText
-                                                primary={item.BARRIO}
-                                                primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}
-                                                />
-                                            </ListItemButton>
-                                            ))}
+                                            {datas.map((item) => {
+                                                return sinTotales(item);
+                                            })}
                                         </ul>
                                         </li>
                                     ))}
                                     </List>
- 
- 
                                 </Box>  
                             </Paper>
                         </Grid>
-                        <Divider orientation="vertical" flexItem />
-                        <Grid sx >
-                             {/* <TarjetaPatinete patinete={patinetes}/>  */}
+                        <Grid item lg="9"  xs="9">
+                            { a(barrio)}
+                            <TarjetaPatinete patinete={patinetes}/> 
                         </Grid>
-                        </Grid>
-                    </ThemeProvider>
-                </Nav>
+                    </Grid>
+                </ThemeProvider>
+            </Nav>
             <br />
             <Footer />
         </div>

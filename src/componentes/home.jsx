@@ -5,10 +5,7 @@ export default function Home() {
     return(
         <div>
             <Header/>
-            <br/>
-            <br/>
-            <br/>
-            <h1>Home</h1>
+            <h1 style={{paddingTop: "2%", paddingBottom: "3%"}}>Home</h1>
             <Footer/>
         </div>
     );

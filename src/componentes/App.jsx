@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import '../../src/App.css';
-import Accidentes from './accidentes/ListaAccidentes';
+import Accidentes from './accidentes/TablaAccidentes';
 import Home from './home';
 import Patinetes from './patinetes/ListaPatinetes';
 
