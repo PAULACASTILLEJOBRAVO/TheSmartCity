@@ -5,28 +5,28 @@ import PedalBike from '@mui/icons-material/PedalBike';
 export default function App() {
   return (
         <MDBFooter bgColor='light' className='text-center text-lg-start text-muted' >
-            <section className=''>
-            <form action=''>
-                <MDBRow className='d-flex justify-content-center'>
-                    <MDBCol size="auto">
-                    <p className='pt-2'>
-                        <strong>Regístrate con tu email</strong>
-                    </p>
-                    </MDBCol>
+            {/* <section className=''>
+                <form action=''>
+                    <MDBRow className='d-flex justify-content-center'>
+                        <MDBCol size="auto">
+                        <p className='pt-2'>
+                            <strong>Regístrate con tu email</strong>
+                        </p>
+                        </MDBCol>
 
-                    <MDBCol md='5' start>
-                    <MDBInput contrast type='email' className='mb-4' />
-                    </MDBCol>
+                        <MDBCol md='5' start>
+                        <MDBInput contrast type='email' className='mb-4' />
+                        </MDBCol>
 
-                    <MDBCol size="auto">
-                    <MDBBtn outline color='dark' type='submit' className='mb-4'>
-                        Subscribirse
-                    </MDBBtn>
-                    </MDBCol>
-                </MDBRow>
+                        <MDBCol size="auto">
+                        <MDBBtn outline color='dark' type='submit' className='mb-4'>
+                            Subscribirse
+                        </MDBBtn>
+                        </MDBCol>
+                    </MDBRow>
                 </form>
-            </section>
-        
+            </section> */}
+        <br/>
         <section className=''>
             <MDBContainer className='text-center text-md-start mt-5'>
             <MDBRow className='mt-3'>
