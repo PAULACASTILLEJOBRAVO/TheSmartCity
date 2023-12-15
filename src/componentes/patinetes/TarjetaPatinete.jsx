@@ -103,7 +103,7 @@ export default function TarjetaPatinete({ patinete }) {
                     // inverse
                     >
                         <CardHeader>
-                            REBY_RIDES
+                            REBY RIDES
                             <ElectricScooter/>
                         </CardHeader>
                     </Card>
@@ -136,7 +136,7 @@ export default function TarjetaPatinete({ patinete }) {
                     // inverse
                     >
                         <CardHeader>
-                            JUMP_UBER
+                            JUMP UBER
                             <ElectricScooter/>
                         </CardHeader>
                     </Card>
@@ -148,7 +148,7 @@ export default function TarjetaPatinete({ patinete }) {
                     // inverse
                     >
                         <CardHeader>
-                            SJV_CONSULTING
+                            SJV CONSULTING
                             <ElectricScooter/>
                         </CardHeader>
                     </Card>
@@ -379,7 +379,7 @@ export default function TarjetaPatinete({ patinete }) {
                     // inverse
                     >
                         <CardHeader>
-                            REBY_RIDES
+                            REBY RIDES
                             <ElectricScooter/>
                         </CardHeader>
                         <CardBody>
@@ -459,7 +459,7 @@ export default function TarjetaPatinete({ patinete }) {
                     // inverse
                     >
                         <CardHeader>
-                            JUMP_UBER
+                            JUMP UBER
                             <ElectricScooter/>
                         </CardHeader>
                         <CardBody>
@@ -486,7 +486,7 @@ export default function TarjetaPatinete({ patinete }) {
                     // inverse
                     >
                         <CardHeader>
-                            SJV_CONSULTING
+                            SJV CONSULTING
                             <ElectricScooter/>
                         </CardHeader>
                         <CardBody>

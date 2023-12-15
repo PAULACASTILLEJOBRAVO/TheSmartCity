@@ -1,14 +1,15 @@
 import * as React from 'react';
 import {AppBar, Toolbar} from '@mui/material';
-import {Home, AccountCircle} from '@mui/icons-material/';
+import {Home, AccountCircle, Notifications} from '@mui/icons-material/';
 import {Button} from 'reactstrap';
-import {IconButton, Container, Box, Menu, MenuItem, Typography, Tooltip} from '@mui/material';
+import {IconButton, Container, Box, Menu, MenuItem, Typography, Tooltip, Badge} from '@mui/material';
 import LongMenu from './menu'
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function Header() {
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const [notification, setNotification] = React.useState(0);
 	
 	const handleOpenUserMenu = (event) => {
 		setAnchorElUser(event.currentTarget);
@@ -29,7 +30,16 @@ export default function Header() {
 						<Button href='/Patinetes' color="inherit" className='text-light'>Patinetes</Button>
 					</Box>
 					<Box sx={{ flexGrow: 0 }}>
-						
+					<IconButton
+						size="large"
+						aria-label="show new notifications"
+						color="inherit"
+					>
+						<Badge badgeContent={notification} showZero color="error">
+							<Notifications />
+						</Badge>
+					</IconButton>
+
 						<IconButton
 							aria-label="more"
 							id="long-button"

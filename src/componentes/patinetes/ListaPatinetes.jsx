@@ -41,7 +41,7 @@ export default function ListaPatinetes() {
     }
 
     const sinTotales = (item) => {
-        if(item.BARRIO !== "Total" && item.DISTRITO === "CENTRO"){
+        if(item.BARRIO !== "Total"){ // && item.DISTRITO === "CENTRO"){
             return (<ListItemButton
                     key={`${item._id}${item}`}
                     sx={{ py: 0, minHeight: 20, color: 'rgba(255,255,255,.8)' }}
@@ -133,7 +133,7 @@ export default function ListaPatinetes() {
                                             bgcolor: 'background.paper',
                                             position: 'relative',
                                             overflow: 'auto',
-                                            maxHeight: 600,
+                                            maxHeight: 700,
                                             '& ul': { padding: 0 },
                                         }}
                                         subheader={<li />}
