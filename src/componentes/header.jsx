@@ -3,13 +3,18 @@ import {AppBar, Toolbar} from '@mui/material';
 import {Home, AccountCircle, Notifications} from '@mui/icons-material/';
 import {Button} from 'reactstrap';
 import {IconButton, Container, Box, Menu, MenuItem, Typography, Tooltip, Badge} from '@mui/material';
-import LongMenu from './menu'
+import PopupState, { bindHover, bindFocus, bindMenu} from 'material-ui-popup-state';
+import HoverMenu from 'material-ui-popup-state/HoverMenu';
+import { useNavigate } from 'react-router-dom';
+import LongMenu from './menu';
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function Header() {
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
-	const [notification, setNotification] = React.useState(0);
+	const [notification, setNotificacion] = React.useState(0);
+
+	const navigate = useNavigate();
 	
 	const handleOpenUserMenu = (event) => {
 		setAnchorElUser(event.currentTarget);
@@ -19,15 +24,32 @@ export default function Header() {
 		setAnchorElUser(null);
 	};
 
+	const handleMove = event => {
+		navigate("/"+event.nativeEvent.target.outerText);
+	};
+
 	return (
 		<AppBar color='success' position='static'>
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						<LongMenu/>
-						<Button href='/Accidentes' color="inherit" className='text-light'>Accidentes</Button>
-						<Button href='/Bicicletas' color="inherit" className='text-light'>Bicicletas</Button>
-						<Button href='/Patinetes' color="inherit" className='text-light'>Patinetes</Button>
+						<Button href='/Accidentes' color="inherit" className='text-light' style={{ paddingRight: "4%", paddingLeft: "2%"}}>Accidentes</Button>
+						<PopupState variant="popover" popupId="demo-popup-menu" >
+							{(popupState) => (
+								<React.Fragment>
+								<Button variant="contained" {...bindHover(popupState)} {...bindFocus(popupState)} color="inherit" className='text-light' style={{ paddingRight: "4%"}}>
+									Bicicletas
+								</Button>
+								<HoverMenu {...bindMenu(popupState)} >
+									<MenuItem onClick={handleMove}>Aforo</MenuItem>
+									<MenuItem onClick={handleMove}>Disponibilidad</MenuItem>
+								</HoverMenu>
+								</React.Fragment>
+							)}
+						</PopupState>
+						<Button href='/Patinetes' color="inherit" className='text-light' style={{ paddingRight: "4%"}}>Patinetes</Button>
+						<Button href='/Callejero' color="inherit" className='text-light' style={{ paddingRight: "4%"}}>Callejero</Button>
 					</Box>
 					<Box sx={{ flexGrow: 0 }}>
 					<IconButton
@@ -79,7 +101,7 @@ export default function Header() {
 							onClose={handleCloseUserMenu}
 						>
 						{settings.map((setting) => (
-							<MenuItem key={setting} onClick={handleCloseUserMenu}>
+							<MenuItem key={setting} onClick={handleMove}>
 								<Typography textAlign="center">{setting}</Typography>
 							</MenuItem>
 						))}
