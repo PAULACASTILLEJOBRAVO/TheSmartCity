@@ -19,6 +19,7 @@ import {
     Legend,
     ArcElement} from 'chart.js';
 import { Bar, Pie, Doughnut } from 'react-chartjs-2';
+import zoomPlugin from "chartjs-plugin-zoom";
 ChartJS.register( 
     CategoryScale, 
     LinearScale, 
@@ -26,7 +27,8 @@ ChartJS.register(
     ArcElement, 
     Title, 
     Tooltip, 
-    Legend );
+    Legend,
+    zoomPlugin );
 
 const barOptions = {
     indexAxis: 'x',
@@ -35,15 +37,26 @@ const barOptions = {
             borderWidth: 2,
         },
     },
-    responsive: true,
     plugins:{
         legend: {
             position: 'bottom',
-        },       
+        },  
+        zoom: {
+            zoom: {
+                wheel: {
+                    enabled: true
+                },
+                mode: "x",
+                speed: 100,
+            },
+            pan: {
+                enabled: true,
+                mode: "x",
+                speed: 0.5,
+            },
+        },
     },
 };
-
-
 
 export default function GraficaBicicletaDisponible() {
     const [rows, setRows] = useState([]);
@@ -73,6 +86,19 @@ export default function GraficaBicicletaDisponible() {
             backgroundColor:["Red", "Yellow", "Blue"],
         }],
     });
+
+    const getRandomColors = (numOfBars) =>{
+        const letters = "0123456789ABCDEF".split("");
+        let colors = [];
+        for(let i = 0; i < numOfBars; i++){
+            let color = "#";
+            for (let k = 0; k < 6; k++){
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            colors.push(color);
+        }
+        return colors;
+    }
 
     useEffect(() => {
         const label = [];
@@ -131,7 +157,7 @@ export default function GraficaBicicletaDisponible() {
                 setPieData({
                     datasets: [{
                         data: datasetTotalUsos,
-                        backgroundColor:["Red", "Yellow", "Blue", "Green", "Purple", "Orange", "LightRed", "LightYellow", "LightBlue", "LightGreen", "LightPurple", "LightOrange"] 
+                        backgroundColor: getRandomColors(label.length)
                     }],
                 })
             }, [])
@@ -158,14 +184,14 @@ export default function GraficaBicicletaDisponible() {
                 <Row>
                     <Col lg="6" xs="6">    
                         <h3>Abono de bicicletas</h3>
-                        <Bar data={barData} options={barOptions}/>
+
+                            <Bar data={barData} options={barOptions}/>
+
                     </Col>
                     <Col lg="6" xs="6">
                         <h3>Uso total de bicicletas</h3>
                         <div style={{paddingLeft: "30%", paddingRight: "30%"}}>
-                            
-                                <Pie data={pieData}/>
-                            
+                            <Pie data={pieData}/>
                         </div>
                         <DatePicker 
                             selectsRange={true}

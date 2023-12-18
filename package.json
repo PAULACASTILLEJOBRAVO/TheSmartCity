@@ -1,6 +1,6 @@
 {
-  "name": "thesmartcity",
-  "version": "0.1.0",
+  "name": "TheSmartCity",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -15,6 +15,7 @@
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
     "chart.js": "^4.4.1",
+    "chartjs-plugin-zoom": "^2.0.1",
     "material-ui-popup-state": "^5.0.10",
     "mdb-react-ui-kit": "^7.0.0",
     "mdbreact": "^5.2.0",
@@ -26,6 +27,7 @@
     "react-pagination": "^1.0.0",
     "react-router-dom": "^6.19.0",
     "react-scripts": "^5.0.1",
+    "react-zoom-pan-pinch": "^3.3.0",
     "reactstrap": "^9.2.1",
     "web-vitals": "^2.1.4"
   },
