@@ -4,6 +4,7 @@ import Header from '../header';
 import Footer from '../footer';
 import { LinearProgress} from '@mui/material';
 import DatePicker from "react-datepicker";
+import { Container, Col, Row } from 'reactstrap';
 
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -37,20 +38,11 @@ const barOptions = {
     responsive: true,
     plugins:{
         legend: {
-            position: 'left',
-            title: {display: true, text: "Abono de bicicletas"},
+            position: 'bottom',
         },       
     },
 };
-const pieOptions = {
-    responsive: true,
-    plugins:{
-        legend: {
-            position: 'top',
-            title: {display: true, text: "Uso total de bicicletas"},
-        },       
-    },
-};
+
 
 
 export default function GraficaBicicletaDisponible() {
@@ -92,58 +84,30 @@ export default function GraficaBicicletaDisponible() {
         const datasetUsoAbonadoOcasional = [];
         const datasetTotalUsos = [];
 
-        let inicio = "01/01/2051";
-        let final = "31/12/2051";
-
-        if (startDate !== null){
-            if((Number(startDate.getDate())+1) in [1,2,3,4,5,6,7,8,9]){
-                if((Number(startDate.getMonth())+1) in [1,2,3,4,5,6,7,8,9]){
-                    inicio = "0"+(Number(startDate.getMonth())+1)+"/0"+startDate.getDate()+"/"+startDate.getFullYear();
-                }else{
-                    inicio = (Number(startDate.getMonth())+1)+"/0"+startDate.getDate()+"/"+startDate.getFullYear();
-                }
-            }else{
-                if((Number(startDate.getMonth())+1) in [1,2,3,4,5,6,7,8,9]){
-                    inicio = "0"+(Number(startDate.getMonth())+1)+"/"+startDate.getDate()+"/"+startDate.getFullYear();
-                }else{
-                    inicio = (Number(startDate.getMonth())+1)+"/"+startDate.getDate()+"/"+startDate.getFullYear();
-                }
-            }
-        }
-        if (endDate !== null){
-            if((Number(endDate.getDate())+1) in [1,2,3,4,5,6,7,8,9]){
-                if((Number(endDate.getMonth())+1) in [1,2,3,4,5,6,7,8,9]){
-                    final = "0"+(Number(endDate.getMonth())+1)+"/0"+endDate.getDate()+"/"+endDate.getFullYear();
-                }else{
-                    final = (Number(endDate.getMonth())+1)+"/0"+endDate.getDate()+"/"+endDate.getFullYear();
-                }
-            }else{
-                if((Number(endDate.getMonth())+1) in [1,2,3,4,5,6,7,8,9]){
-                    final = "0"+(Number(endDate.getMonth())+1)+"/"+endDate.getDate()+"/"+endDate.getFullYear();
-                }else{
-                    final = (Number(endDate.getMonth())+1)+"/"+endDate.getDate()+"/"+endDate.getFullYear();
-                }
-            }
-        }
-        
-
         axios.get('https://anthemmanifest.onrender.com/bicicletasDisponibilidad')
             .then((resultado) => {
                 
                 setRows(resultado.data);
                 for(const valor of resultado.data){
-                    // label.push(valor.DIA);
+                    
                     datasetHorasTotalesUsoBicicletas.push(valor.HORAS_TOTALES_USOS_BICICLETAS);
                     datasetHorasTotalesDisponibilidadBicicletasAnclajes.push(valor.HORAS_TOTALES_DISPONIBILIDAD_BICICLETAS_EN_ANCLAJES);
                     datasetHorasTotalesServicioBicicletas.push(valor.TOTAL_HORAS_SERVICIO_BICICLETAS);
                     datasetMediaDisponibilidadBicicletas.push(valor.MEDIA_BICICLETAS_DISPONIBLES);
-                    if(valor.USOS_ABONADO_ANUAL < 200 && valor.USOS_ABONADO_OCASIONAL < 200){
+                    if(valor.USOS_ABONADO_ANUAL < 200){
                         label.push(valor.DIA);
                         datasetUsoAbonadoAnual.push(valor.USOS_ABONADO_ANUAL);
                         datasetUsoAbonadoOcasional.push(valor.USOS_ABONADO_OCASIONAL);
                     }
-                    if(valor.DIA >= inicio && valor.DIA <= final ){
-                        label.push(valor.DIA);
+
+                    let fecha = new Date();
+                    if((Number(valor.DIA.slice(-7,-5))-1) in [1,2,3,4,5,6,7,8,9]){
+                        fecha = new Date(valor.DIA.slice(-4),"0"+(Number(valor.DIA.slice(-7,-5))-1),valor.DIA.slice(0,2));
+                    }else{
+                        fecha = new Date(valor.DIA.slice(-4),Number(valor.DIA.slice(-7,-5))-1,valor.DIA.slice(0,2));
+                    }
+                        
+                    if(fecha >= startDate && fecha <= endDate ){
                         datasetTotalUsos.push(valor.TOTAL_USOS);
                     }
                 }
@@ -151,13 +115,13 @@ export default function GraficaBicicletaDisponible() {
                     labels: label,
                     datasets: [
                         {
-                            label: "Dataset Abono Anual",
+                            label: "Abono Anual",
                             data: datasetUsoAbonadoAnual,
                             borderColor: 'rgb(255,99,123)',
                             backgroundColor: 'rgba(255,99,123,0.5)',
                         },
                         {
-                            label: "Dataset Abono Ocasional",
+                            label: "Abono Ocasional",
                             data: datasetUsoAbonadoOcasional,
                             borderColor: 'rgb(53,162,235)',
                             backgroundColor: 'rgba(53,162,235,0.5)',
@@ -167,9 +131,8 @@ export default function GraficaBicicletaDisponible() {
                 setPieData({
                     datasets: [{
                         data: datasetTotalUsos,
-                        backgroundColor:["Red", "Yellow", "Blue"] 
+                        backgroundColor:["Red", "Yellow", "Blue", "Green", "Purple", "Orange", "LightRed", "LightYellow", "LightBlue", "LightGreen", "LightPurple", "LightOrange"] 
                     }],
-                    labels: label,
                 })
             }, [])
     });
@@ -191,25 +154,34 @@ export default function GraficaBicicletaDisponible() {
         <div style={{ textAlign: "center" }}>
             <Header />
             <h1 style={{paddingTop: "2%"}}>Estadísticas de las bicicletas</h1>
-            <div style={{width: '80%', height: '50%'}}>
-                <Bar data={barData} options={barOptions}/>
-            </div>
-            <div style={{width: '50%', height: '50%'}}>
-                {/* <h3>Uso total de bicicletas</h3> */}
-                <Pie data={pieData} options={pieOptions}/>
-                <DatePicker 
-                    selectsRange={true}
-                    startDate={startDate}
-                    endDate={endDate}
-                    onChange={handleChangeDate} 
-                    dateFormat="dd/MM/yyyy"
-                    minDate={new Date(2051, 0, 1)}
-                    maxDate={new Date(2051, 11, 31)}
-                    isClearable
-                    showMonthDropdown
-                    scrollableMonthYearDropdown
-                />  
-            </div>
+            <Container>
+                <Row>
+                    <Col lg="6" xs="6">    
+                        <h3>Abono de bicicletas</h3>
+                        <Bar data={barData} options={barOptions}/>
+                    </Col>
+                    <Col lg="6" xs="6">
+                        <h3>Uso total de bicicletas</h3>
+                        <div style={{paddingLeft: "30%", paddingRight: "30%"}}>
+                            
+                                <Pie data={pieData}/>
+                            
+                        </div>
+                        <DatePicker 
+                            selectsRange={true}
+                            startDate={startDate}
+                            endDate={endDate}
+                            onChange={handleChangeDate} 
+                            dateFormat="dd/MM/yyyy"
+                            minDate={new Date(2051, 0, 1)}
+                            maxDate={new Date(2051, 11, 31)}
+                            isClearable
+                            showMonthDropdown
+                            scrollableMonthYearDropdown
+                        />  
+                    </Col>
+                </Row>
+            </Container>
             <br />
             <Footer />
         </div>
