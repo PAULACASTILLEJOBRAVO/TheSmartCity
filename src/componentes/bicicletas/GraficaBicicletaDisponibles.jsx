@@ -3,7 +3,6 @@ import axios from 'axios';
 import Header from '../header';
 import Footer from '../footer';
 import { LinearProgress} from '@mui/material';
-import DatePicker from "react-datepicker";
 import { Container, Col, Row } from 'reactstrap';
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,21 +15,23 @@ import {
     BarElement, 
     Title, 
     Tooltip, 
-    Legend,
-    ArcElement} from 'chart.js';
-import { Bar, Pie, Doughnut } from 'react-chartjs-2';
+    Legend, 
+    PointElement,
+    LineElement} from 'chart.js';
+import { Bar, Line } from 'react-chartjs-2';
 import zoomPlugin from "chartjs-plugin-zoom";
 ChartJS.register( 
     CategoryScale, 
     LinearScale, 
     BarElement, 
-    ArcElement, 
+    PointElement,
+    LineElement,
     Title, 
     Tooltip, 
     Legend,
     zoomPlugin );
 
-const barOptions = {
+const barHorizontalOptions = {
     indexAxis: 'x',
     elements: {
         bar:{
@@ -58,21 +59,65 @@ const barOptions = {
     },
 };
 
+const barVerticaloptions = {
+    indexAxis: 'y',
+    elements: {
+        bar:{
+            borderWidth: 2,
+        },
+    },
+    plugins:{
+        legend: {
+            position: 'bottom',
+        },  
+        zoom: {
+            zoom: {
+                wheel: {
+                    enabled: true
+                },
+                mode: "y",
+                speed: 100,
+            },
+            pan: {
+                enabled: true,
+                mode: "y",
+                speed: 0.5,
+            },
+        },
+    },
+};
+
+const lineOptions = {
+    plugins: {
+        zoom: {
+            zoom: {
+                wheel: {
+                    enabled: true
+                },
+                mode: "x",
+                speed: 100,
+            },
+            pan: {
+                enabled: true,
+                mode: "x",
+                speed: 0.5,
+            },
+        },
+    }
+}
 export default function GraficaBicicletaDisponible() {
     const [rows, setRows] = useState([]);
-    const [startDate, setStartDate] = useState(new Date(2051, 0, 1));
-    const [endDate, setEndDate] = useState(new Date(2051, 11, 31));
-    const [barData, setBarData] = useState({
+    const [barHorData, setBarHorData] = useState({
         labels: [],
         datasets: [
             {
-                label: "Dataset 1",
+                label: "",
                 data: [],
                 borderColor: 'rgb(255,99,123)',
                 backgroundColor: 'rgba(255,99,123,0.5)',
             },
             {
-                label: "Dataset 2",
+                label: "",
                 data: [],
                 borderColor: 'rgb(53,162,235)',
                 backgroundColor: 'rgba(53,162,235,0.5)',
@@ -80,25 +125,27 @@ export default function GraficaBicicletaDisponible() {
         ],   
     });
 
-    const [ pieData, setPieData] = useState({
-        datasets: [{
-            data: [],
-            backgroundColor:["Red", "Yellow", "Blue"],
-        }],
+    const [ barVerData, setBarVerData] = useState({
+        labels: [],
+        datasets: [
+            {
+                label: "",
+                data: [],
+                borderColor: 'rgb(255,99,123)',
+                backgroundColor: 'rgba(255,99,123,0.5)',
+            },
+        ],
     });
 
-    const getRandomColors = (numOfBars) =>{
-        const letters = "0123456789ABCDEF".split("");
-        let colors = [];
-        for(let i = 0; i < numOfBars; i++){
-            let color = "#";
-            for (let k = 0; k < 6; k++){
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            colors.push(color);
-        }
-        return colors;
-    }
+    const [ lineData, setLineData] = useState({
+        labels: [],
+        datasets: [{
+            data: [],
+            backgroundColor: 'aqua',
+            borderColor: 'black',
+            pointBorderColor: 'aqua',
+        }],
+    });
 
     useEffect(() => {
         const label = [];
@@ -116,28 +163,19 @@ export default function GraficaBicicletaDisponible() {
                 setRows(resultado.data);
                 for(const valor of resultado.data){
                     
-                    datasetHorasTotalesUsoBicicletas.push(valor.HORAS_TOTALES_USOS_BICICLETAS);
-                    datasetHorasTotalesDisponibilidadBicicletasAnclajes.push(valor.HORAS_TOTALES_DISPONIBILIDAD_BICICLETAS_EN_ANCLAJES);
-                    datasetHorasTotalesServicioBicicletas.push(valor.TOTAL_HORAS_SERVICIO_BICICLETAS);
-                    datasetMediaDisponibilidadBicicletas.push(valor.MEDIA_BICICLETAS_DISPONIBLES);
-                    if(valor.USOS_ABONADO_ANUAL < 200){
+                    datasetMediaDisponibilidadBicicletas.push(parseFloat(valor.MEDIA_BICICLETAS_DISPONIBLES));
+                    
+                    if(parseFloat(valor.USOS_ABONADO_ANUAL) < 200){
                         label.push(valor.DIA);
-                        datasetUsoAbonadoAnual.push(valor.USOS_ABONADO_ANUAL);
-                        datasetUsoAbonadoOcasional.push(valor.USOS_ABONADO_OCASIONAL);
-                    }
-
-                    let fecha = new Date();
-                    if((Number(valor.DIA.slice(-7,-5))-1) in [1,2,3,4,5,6,7,8,9]){
-                        fecha = new Date(valor.DIA.slice(-4),"0"+(Number(valor.DIA.slice(-7,-5))-1),valor.DIA.slice(0,2));
-                    }else{
-                        fecha = new Date(valor.DIA.slice(-4),Number(valor.DIA.slice(-7,-5))-1,valor.DIA.slice(0,2));
+                        datasetUsoAbonadoAnual.push(parseFloat(valor.USOS_ABONADO_ANUAL));
+                        datasetUsoAbonadoOcasional.push(parseFloat(valor.USOS_ABONADO_OCASIONAL));
                     }
                         
-                    if(fecha >= startDate && fecha <= endDate ){
-                        datasetTotalUsos.push(valor.TOTAL_USOS);
+                    if(parseFloat(valor.TOTAL_USOS) < 20){
+                        datasetTotalUsos.push(parseFloat(valor.TOTAL_USOS));
                     }
                 }
-                setBarData({
+                setBarHorData({
                     labels: label,
                     datasets: [
                         {
@@ -154,24 +192,37 @@ export default function GraficaBicicletaDisponible() {
                         }
                     ],   
                 });
-                setPieData({
+                setBarVerData({
+                    labels: label,
+                    datasets: [
+                        {
+                            label: "Bicicletas utilizadas por día",
+                            data: datasetTotalUsos,
+                            borderColor: 'rgb( 46, 204, 113 )',
+                            backgroundColor: 'rgba( 46, 204, 113, 0.5)',
+                        },
+                    ],
+                });
+                setLineData({
+                    labels: label,
                     datasets: [{
-                        data: datasetTotalUsos,
-                        backgroundColor: getRandomColors(label.length)
-                    }],
-                })
+                        label: "Total disponibilidad bicicletas",
+                        data: datasetMediaDisponibilidadBicicletas,
+                        backgroundColor: 'rgb(227, 255, 0)',
+                        borderColor: 'black',
+                        pointBorderColor: 'rgb(227, 255, 0)',
+                    },
+                    ],
+                });
+
+                console.log("media", datasetHorasTotalesDisponibilidadBicicletasAnclajes);
             }, [])
     });
 
-    const handleChangeDate = (date) => {
-        setStartDate(date[0]);
-        setEndDate(date[1]);
-    }
-    
     return rows.length === 0 ? (
         <div style={{ textAlign: "center" }}>
             <Header />
-            <h1 style={{paddingTop: "2%", paddingBottom: "3%"}}>Estadísticas de las bicicletas</h1>
+            <h1 style={{paddingTop: "3%", paddingBottom: "2%"}}>Estadísticas de las bicicletas</h1>
            <LinearProgress/>
             <br />
             <Footer />
@@ -179,34 +230,24 @@ export default function GraficaBicicletaDisponible() {
     ):(
         <div style={{ textAlign: "center" }}>
             <Header />
-            <h1 style={{paddingTop: "2%"}}>Estadísticas de las bicicletas</h1>
+            <h1 style={{paddingTop: "2%", paddingBottom: "3%"}}>Estadísticas de las bicicletas</h1>
             <Container>
-                <Row>
-                    <Col lg="6" xs="6">    
-                        <h3>Abono de bicicletas</h3>
-
-                            <Bar data={barData} options={barOptions}/>
-
+                <Row > 
+                    <Col style={{ paddingBottom: "4%"}} lg="6" xs="12"> 
+                        <h3>Número de abonos de bicicletas pagados en Madrid</h3>
+                        <Bar data={barHorData} options={barHorizontalOptions}/>
+                        <hr/>
+                        <h3>Disponibilidad de todas las bicicletas en anclajes en un año para Madrid</h3>
+                        <Line data={lineData} options={lineOptions}/>  
                     </Col>
-                    <Col lg="6" xs="6">
-                        <h3>Uso total de bicicletas</h3>
-                        <div style={{paddingLeft: "30%", paddingRight: "30%"}}>
-                            <Pie data={pieData}/>
+
+                    <Col lg="6" style={{paddingLeft: "5%"}}>
+                        <div style={{position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', }}>
+                            <h3 >Uso total de bicicletas por día en Madrid</h3>
+                            <Bar data={barVerData} options={barVerticaloptions}/>
                         </div>
-                        <DatePicker 
-                            selectsRange={true}
-                            startDate={startDate}
-                            endDate={endDate}
-                            onChange={handleChangeDate} 
-                            dateFormat="dd/MM/yyyy"
-                            minDate={new Date(2051, 0, 1)}
-                            maxDate={new Date(2051, 11, 31)}
-                            isClearable
-                            showMonthDropdown
-                            scrollableMonthYearDropdown
-                        />  
                     </Col>
-                </Row>
+                </Row > 
             </Container>
             <br />
             <Footer />
