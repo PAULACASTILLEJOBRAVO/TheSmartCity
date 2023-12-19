@@ -30,9 +30,9 @@ export default function Header() {
 
 	return (
 		<AppBar color='success' position='static'>
-			<Container maxWidth="xl">
+
 				<Toolbar disableGutters>
-					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+					<Box sx={{ flexGrow: 1, display: { xs: 'flex', lg: 'flex' } }}>
 						<LongMenu/>
 						<Button href='/Accidentes' color="inherit" className='text-light' style={{ paddingRight: "4%", paddingLeft: "2%"}}>Accidentes</Button>
 						<PopupState variant="popover" popupId="demo-popup-menu" >
@@ -51,7 +51,7 @@ export default function Header() {
 						<Button href='/Patinetes' color="inherit" className='text-light' style={{ paddingRight: "4%"}}>Patinetes</Button>
 						<Button href='/Callejero' color="inherit" className='text-light' style={{ paddingRight: "4%"}}>Callejero</Button>
 					</Box>
-					<Box sx={{ flexGrow: 0 }}>
+					<Box sx={{ flexGrow: 0 }} style={{paddingRight: "2%"}}>
 					<IconButton
 						size="large"
 						aria-label="show new notifications"
@@ -108,7 +108,6 @@ export default function Header() {
 						</Menu>
 					</Box>
 				</Toolbar>
-			</Container>
 		</AppBar>
 	);
 }
