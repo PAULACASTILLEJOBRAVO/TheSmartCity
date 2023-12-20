@@ -149,9 +149,7 @@ export default function GraficaBicicletaDisponible() {
 
     useEffect(() => {
         const label = [];
-        const datasetHorasTotalesUsoBicicletas = [];
         const datasetHorasTotalesDisponibilidadBicicletasAnclajes = [];
-        const datasetHorasTotalesServicioBicicletas = [];
         const datasetMediaDisponibilidadBicicletas = [];
         const datasetUsoAbonadoAnual = [];
         const datasetUsoAbonadoOcasional = [];
@@ -192,17 +190,6 @@ export default function GraficaBicicletaDisponible() {
                         }
                     ],   
                 });
-                setBarVerData({
-                    labels: label,
-                    datasets: [
-                        {
-                            label: "Bicicletas utilizadas por día",
-                            data: datasetTotalUsos,
-                            borderColor: 'rgb( 46, 204, 113 )',
-                            backgroundColor: 'rgba( 46, 204, 113, 0.5)',
-                        },
-                    ],
-                });
                 setLineData({
                     labels: label,
                     datasets: [{
@@ -214,15 +201,24 @@ export default function GraficaBicicletaDisponible() {
                     },
                     ],
                 });
-
-                console.log("media", datasetHorasTotalesDisponibilidadBicicletasAnclajes);
-            }, [])
+                setBarVerData({
+                    labels: label,
+                    datasets: [
+                        {
+                            label: "Bicicletas utilizadas por día",
+                            data: datasetTotalUsos,
+                            borderColor: 'rgb( 46, 204, 113 )',
+                            backgroundColor: 'rgba( 46, 204, 113, 0.5)',
+                        },
+                    ],
+                });
+            }, []);
     });
 
     return rows.length === 0 ? (
         <div style={{ textAlign: "center" }}>
             <Header />
-            <h1 style={{paddingTop: "3%", paddingBottom: "2%"}}>Estadísticas de las bicicletas</h1>
+            <h1 style={{paddingTop: "3%", paddingBottom: "2%"}}>Estadísticas en la disponibilidad de las bicicletas</h1>
            <LinearProgress/>
             <br />
             <Footer />
@@ -230,20 +226,20 @@ export default function GraficaBicicletaDisponible() {
     ):(
         <div style={{ textAlign: "center" }}>
             <Header />
-            <h1 style={{paddingTop: "2%", paddingBottom: "3%"}}>Estadísticas de las bicicletas</h1>
+            <h1 style={{paddingTop: "2%", paddingBottom: "3%"}}>Estadísticas en la disponibilidad de las bicicletas</h1>
             <Container>
                 <Row > 
                     <Col style={{ paddingBottom: "4%"}} lg="6" xs="12"> 
-                        <h3>Número de abonos de bicicletas pagados en Madrid</h3>
+                        <h3>Número de viajes efectuados por usuario en bicicleta por Madrid</h3>
                         <Bar data={barHorData} options={barHorizontalOptions}/>
                         <hr/>
-                        <h3>Disponibilidad de todas las bicicletas en anclajes en un año para Madrid</h3>
+                        <h3>Media de horas de servicio de bicicletas por día para Madrid</h3>
                         <Line data={lineData} options={lineOptions}/>  
+                        <hr/>
                     </Col>
-
                     <Col lg="6" style={{paddingLeft: "5%"}}>
                         <div style={{position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', }}>
-                            <h3 >Uso total de bicicletas por día en Madrid</h3>
+                            <h3 >Total de viajes en bicicleta por día en Madrid</h3>
                             <Bar data={barVerData} options={barVerticaloptions}/>
                         </div>
                     </Col>
