@@ -149,7 +149,6 @@ export default function GraficaBicicletaDisponible() {
 
     useEffect(() => {
         const label = [];
-        const datasetHorasTotalesDisponibilidadBicicletasAnclajes = [];
         const datasetMediaDisponibilidadBicicletas = [];
         const datasetUsoAbonadoAnual = [];
         const datasetUsoAbonadoOcasional = [];
