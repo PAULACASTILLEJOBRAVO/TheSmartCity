@@ -99,7 +99,7 @@ export default function ListaPatinetes() {
                     },
                     })}
                 >
-                    <Grid container spacing={1} style={{paddingLeft: "2%"}}>
+                    <Grid container spacing={1} style={{paddingLeft: "2%", paddingRight: "2%"}}>
                         <Grid item lg="3"  xs="3">
                             <Paper elevation={0} sx={{ maxWidth: 256 }}>
                                 <Box
