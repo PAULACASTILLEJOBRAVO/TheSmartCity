@@ -2,7 +2,7 @@ import * as React from 'react';
 import {AppBar, Toolbar} from '@mui/material';
 import {Home, AccountCircle, Notifications} from '@mui/icons-material/';
 import {Button} from 'reactstrap';
-import {IconButton, Container, Box, Menu, MenuItem, Typography, Tooltip, Badge} from '@mui/material';
+import {IconButton, Box, Menu, MenuItem, Typography, Tooltip, Badge} from '@mui/material';
 import PopupState, { bindHover, bindFocus, bindMenu} from 'material-ui-popup-state';
 import HoverMenu from 'material-ui-popup-state/HoverMenu';
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +10,9 @@ import LongMenu from './menu';
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-export default function Header() {
+export default function Header({notification}) {
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
-	const [notification, setNotificacion] = React.useState(0);
+	// const [notification, setNotificacion] = React.useState(0);
 
 	const navigate = useNavigate();
 	

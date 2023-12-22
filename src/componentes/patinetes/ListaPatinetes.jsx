@@ -12,11 +12,15 @@ const Nav = styled(List)({
       paddingLeft: 24,
       paddingRight: 24,
     }
-  });
+});
+
+let distrtitosDuplicados = [];
+let distrtitos = [];
 
 export default function ListaPatinetes() {
     const [datas, setDatas] = useState([]);
     const [open, setOpen] = useState(true);
+    // const [first, setFirst] = 
     const [patinetes, setPatinetes] = useState(true);
     const [barrio, setBarrio] = useState(true);
 
@@ -24,6 +28,14 @@ export default function ListaPatinetes() {
         axios.get('https://anthemmanifest.onrender.com/asignacionPatinetes')
             .then((resultado) => {
                 setDatas(resultado.data);
+
+                for(const valor of resultado.data){
+
+                distrtitosDuplicados.push(valor.DISTRITO);
+                distrtitos = distrtitosDuplicados.filter((item,index)=>{
+                    return distrtitosDuplicados.indexOf(item) === index;
+                  })
+                }
             }, [])
     });
 
@@ -33,7 +45,7 @@ export default function ListaPatinetes() {
         setBarrio(event.BARRIO);
     };
 
-    const a = (barrio) => {
+    const barrioPorDistrito = (barrio) => {
         if(barrio === true){
            return <h3>Compañías de patinetes disponibles  </h3>
         }
@@ -41,7 +53,7 @@ export default function ListaPatinetes() {
     }
 
     const sinTotales = (item) => {
-        if(item.BARRIO !== "Total"){ // && item.DISTRITO === "CENTRO"){
+        if(item.BARRIO !== "Total"){ 
             return (<ListItemButton
                     key={`${item._id}${item}`}
                     sx={{ py: 0, minHeight: 20, color: 'rgba(255,255,255,.8)' }}
@@ -87,7 +99,7 @@ export default function ListaPatinetes() {
                     },
                     })}
                 >
-                    <Grid container spacing={1} >
+                    <Grid container spacing={1} style={{paddingLeft: "2%"}}>
                         <Grid item lg="3"  xs="3">
                             <Paper elevation={0} sx={{ maxWidth: 256 }}>
                                 <Box
@@ -138,10 +150,10 @@ export default function ListaPatinetes() {
                                         }}
                                         subheader={<li />}
                                     >
-                                    {open && datas.map((data) => (
+                                    {open && distrtitos.map((data) => (
                                         <li key={data._id}>
                                         <ul>
-                                            <ListSubheader>{data.DISTRITO}</ListSubheader>
+                                            <ListSubheader>{data}</ListSubheader>
                                             {datas.map((item) => {
                                                 return sinTotales(item);
                                             })}
@@ -153,7 +165,7 @@ export default function ListaPatinetes() {
                             </Paper>
                         </Grid>
                         <Grid item lg="9"  xs="9">
-                            { a(barrio)}
+                            { barrioPorDistrito(barrio)}
                             <TarjetaPatinete patinete={patinetes}/> 
                         </Grid>
                     </Grid>
