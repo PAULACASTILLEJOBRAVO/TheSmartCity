@@ -7,12 +7,12 @@ import PopupState, { bindHover, bindFocus, bindMenu} from 'material-ui-popup-sta
 import HoverMenu from 'material-ui-popup-state/HoverMenu';
 import { useNavigate } from 'react-router-dom';
 import LongMenu from './menu';
+import store from '../redux/store';
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-export default function Header({notification}) {
+export default function Header() {
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
-	// const [notification, setNotificacion] = React.useState(0);
 
 	const navigate = useNavigate();
 	
@@ -57,7 +57,7 @@ export default function Header({notification}) {
 						aria-label="show new notifications"
 						color="inherit"
 					>
-						<Badge badgeContent={notification} showZero color="error">
+						<Badge badgeContent={store.getState().contador} showZero color="error">
 							<Notifications />
 						</Badge>
 					</IconButton>

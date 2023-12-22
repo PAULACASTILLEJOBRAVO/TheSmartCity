@@ -2,16 +2,34 @@ import * as React from 'react';
 import { CardBody, CardHeader, CardTitle, Card, Row, Col, Container } from 'reactstrap';
 import {ElectricScooter, Add, Remove} from '@mui/icons-material';
 import {IconButton, Tooltip} from '@mui/material';
+import store from '../../redux/store';
+import { increment } from "../../redux/contador/contador-acciones";
+
 
 export default function TarjetaPatinete({ patinete }) {
+    const [contadorPatinete, setContadorPatinete] = React.useState(0);
+    const [compañia, setCompañia] = React.useState("");
+
+    const añadirQuitarPatinete = (id, nombre, valor, boton) => () => {
+        store.dispatch(increment())
+        if(boton === "AÑADIR"){
+            setContadorPatinete(Number(contadorPatinete)+1);
+            setCompañia(nombre);
+        }else if(boton === "QUITAR"){
+            if(contadorPatinete > 0){
+                setContadorPatinete(Number(contadorPatinete)-1);
+                setCompañia(nombre);
+            }else{
+                alert("No tiene patinetes pedidos.");
+            }
+        }
+    }
+
     return patinete === true ? (
         <Container >
             <Row xs="12">
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             ACCIONA
                             <ElectricScooter/>
@@ -19,10 +37,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             Taxify
                             <ElectricScooter/>
@@ -30,10 +45,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >    
+                    <Card body>    
                         <CardHeader>
                             KOKO
                             <ElectricScooter/>
@@ -41,10 +53,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             UFO
                             <ElectricScooter/>
@@ -53,10 +62,7 @@ export default function TarjetaPatinete({ patinete }) {
                 </Col>
 
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             RIDECONGA
                             <ElectricScooter/>
@@ -64,10 +70,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             FLASH
                             <ElectricScooter/>
@@ -75,10 +78,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             LIME
                             <ElectricScooter/>
@@ -86,10 +86,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             BIRD
                             <ElectricScooter/>
@@ -98,10 +95,7 @@ export default function TarjetaPatinete({ patinete }) {
                 </Col>
 
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             REBY RIDES
                             <ElectricScooter/>
@@ -109,10 +103,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             MOVO
                             <ElectricScooter/>
@@ -120,10 +111,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             MYGO
                             <ElectricScooter/>
@@ -131,10 +119,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             JUMP UBER
                             <ElectricScooter/>
@@ -143,10 +128,7 @@ export default function TarjetaPatinete({ patinete }) {
                 </Col>
 
                 <Col lg="3" sm="4" md="4" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             SJV CONSULTING
                             <ElectricScooter/>
@@ -159,10 +141,7 @@ export default function TarjetaPatinete({ patinete }) {
         <Container >
             <Row xs="12">
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             ACCIONA
                             <ElectricScooter/>
@@ -172,12 +151,12 @@ export default function TarjetaPatinete({ patinete }) {
                                 {patinete.ACCIONA} patinetes disponibles
                             </CardTitle>
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "ACCIONA", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "ACCIONA", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -185,10 +164,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             Taxify
                             <ElectricScooter/>
@@ -199,12 +175,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "Taxify", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "Taxify", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -212,10 +188,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             KOKO
                             <ElectricScooter/>
@@ -226,12 +199,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "KOKO", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "KOKO", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -239,10 +212,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             UFO
                             <ElectricScooter/>
@@ -253,12 +223,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "UFO", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "UFO", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -266,10 +236,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             RIDECONGA
                             <ElectricScooter/>
@@ -280,12 +247,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "RIDECONGA", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "RIDECONGA", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -293,10 +260,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             FLASH
                             <ElectricScooter/>
@@ -307,12 +271,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "FLASH", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "FLASH", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -320,10 +284,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             LIME
                             <ElectricScooter/>
@@ -334,12 +295,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "LIME", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "LIME", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -347,10 +308,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             BIRD
                             <ElectricScooter/>
@@ -361,12 +319,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "BIRD", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "BIRD", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -374,10 +332,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             REBY RIDES
                             <ElectricScooter/>
@@ -388,12 +343,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "REBY_RIDES", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "REBY_RIDES", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -401,10 +356,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             MOVO
                         </CardHeader>
@@ -414,12 +366,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "MOVO", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "MOVO", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -427,10 +379,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6"  xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             MYGO
                             <ElectricScooter/>
@@ -441,12 +390,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "MYGO", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "MYGO", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -454,10 +403,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             JUMP UBER
                             <ElectricScooter/>
@@ -468,12 +414,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "JUMP_UBER", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "JUMP_UBER", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
@@ -481,10 +427,7 @@ export default function TarjetaPatinete({ patinete }) {
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
-                    <Card body
-                    // color="primary"
-                    // inverse
-                    >
+                    <Card body>
                         <CardHeader>
                             SJV CONSULTING
                             <ElectricScooter/>
@@ -495,12 +438,12 @@ export default function TarjetaPatinete({ patinete }) {
                             </CardTitle>
                             
                             <Tooltip title="Añadir patinete">
-                                <IconButton color='success'>
+                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "SJV_CONSULTING", patinete.ACCIONA, "AÑADIR")}>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Quitar patinete">
-                                <IconButton color='error'>
+                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "SJV_CONSULTING", patinete.ACCIONA, "QUITAR")}>
                                     <Remove/>
                                 </IconButton>
                             </Tooltip>
