@@ -13,9 +13,7 @@ const Slideshow = () => {
     const intervaloSlideshow = useRef(null);
 
     const siguiente = () => {
-        if (slideshow.current === null){
-            console.log("No se puede avanzar a la siguiente transición");
-        }else{
+        if (slideshow.current !== null){
             if(slideshow.current.children.length > 0){
                 const primerElemento = slideshow.current.children[0];
                 slideshow.current.style.transition = `300ms ease-out all`;
@@ -132,7 +130,7 @@ const Slide = styled.div`
     overflow: hidden;
     transition: .3s ease all;
     z-index: 10;
-    max-height: 500px;
+    max-height: 700px;
     position: relative;
     img{
         width: 100%;

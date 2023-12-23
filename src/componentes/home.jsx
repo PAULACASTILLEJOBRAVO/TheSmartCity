@@ -42,8 +42,8 @@ export default function Home() {
             </main>
             
             <Container >
-                <Row style={{paddingTop: "15%", paddingBottom: "15%"}}>
-                    <Col lg="6" sx="12">
+                <Row style={{paddingTop: "5%", paddingBottom: "15%"}}>
+                    <Col lg="6" sx="12" >
                         <h1>Anthem, </h1>
                         <h2 >la apuesta para mejorar la calidad de vida de los ciudadanos. </h2>
                         <h5>En Anthem tenemos claro que nuestro objetivo es mejorar la forma 

@@ -4,6 +4,7 @@ import Accidentes from './accidentes/TablaAccidentes';
 import Home from './home';
 import Patinetes from './patinetes/ListaPatinetes';
 import BicicletasDisponibles from './bicicletas/GraficaBicicletaDisponibles';
+import NotFound from './NotFound';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/Patinetes' element={<Patinetes/>}/>
           <Route path='/Disponibilidad' element={<BicicletasDisponibles/>}/>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
