@@ -49,7 +49,6 @@ export default function Header() {
 							)}
 						</PopupState>
 						<Button href='/Patinetes' color="inherit" className='text-light' style={{ paddingRight: "4%"}}>Patinetes</Button>
-						<Button href='/Callejero' color="inherit" className='text-light' style={{ paddingRight: "4%"}}>Callejero</Button>
 					</Box>
 					<Box sx={{ flexGrow: 0 }} style={{paddingRight: "2%"}}>
 					<IconButton

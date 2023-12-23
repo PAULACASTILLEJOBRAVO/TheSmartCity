@@ -20,7 +20,6 @@ let distrtitos = [];
 export default function ListaPatinetes() {
     const [datas, setDatas] = useState([]);
     const [open, setOpen] = useState(true);
-    // const [first, setFirst] = 
     const [patinetes, setPatinetes] = useState(true);
     const [barrio, setBarrio] = useState(true);
 
