@@ -8,6 +8,7 @@ import HoverMenu from 'material-ui-popup-state/HoverMenu';
 import { useNavigate } from 'react-router-dom';
 import LongMenu from './menu';
 import store from '../redux/store';
+import { reset } from "../redux/contador/contador-acciones";
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -27,6 +28,10 @@ export default function Header() {
 	const handleMove = event => {
 		navigate("/"+event.nativeEvent.target.outerText);
 	};
+
+	const handleOpenNotification = () => {
+		store.dispatch(reset());
+	}
 
 	return (
 		<AppBar color='success' position='static'>
@@ -55,8 +60,9 @@ export default function Header() {
 						size="large"
 						aria-label="show new notifications"
 						color="inherit"
+						onClick={handleOpenNotification}
 					>
-						<Badge badgeContent={store.getState().contador} showZero color="error">
+						<Badge badgeContent={store.getState().contador}  color="error">
 							<Notifications />
 						</Badge>
 					</IconButton>
