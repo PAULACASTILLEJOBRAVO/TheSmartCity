@@ -14,9 +14,11 @@ export default function TarjetaPatinete({ patinete }) {
     const añadirQuitarPatinete = (id, nombre, valor, boton) => () => {
         store.dispatch(increment())
         if(boton === "AÑADIR"){
-            setContadorPatinete(Number(contadorPatinete)+1);
-            setCompañia(nombre);
-            añadirQuitar.current = boton;
+            if(valor > 0){
+                setContadorPatinete(Number(contadorPatinete)+1);
+                setCompañia(nombre);
+                añadirQuitar.current = boton;
+            }
         }else if(boton === "QUITAR"){
             if(contadorPatinete > 0){
                 setContadorPatinete(Number(contadorPatinete)-1);
@@ -28,6 +30,450 @@ export default function TarjetaPatinete({ patinete }) {
         }
     }
 
+    const disableZeroA = () => {
+        if(patinete.ACCIONA <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "ACCIONA", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "ACCIONA", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "ACCIONA", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "ACCIONA", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+    
+    const disableZeroB = () => {
+        if(patinete.BIRD <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "BIRD", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "BIRD", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "BIRD", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "BIRD", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
+    const disableZeroT = () => {
+        if(patinete.Taxify <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "Taxify", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "Taxify", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "Taxify", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "Taxify", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
+    const disableZeroK = () => {
+        if(patinete.KOKO <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "KOKO", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "KOKO", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            console.log("mayor a cero")
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "KOKO", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "KOKO", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
+    const disableZeroU = () => {
+        if(patinete.UFO <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "UFO", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "UFO", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            console.log("mayor a cero")
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "UFO", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "UFO", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
+    const disableZeroR = () => {
+        if(patinete.RIDECONGA <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "RIDECONGA", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "RIDECONGA", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "ACCIONA", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "ACCIONA", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
+    const disableZeroF = () => {
+        if(patinete.FLASH <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "FLASH", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "FLASH", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "FLASH", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "FLASH", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
+    const disableZeroL = () => {
+        if(patinete.LIME <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "LIME", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "LIME", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "LIME", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "LIME", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
+    const disableZeroRR = () => {
+        if(patinete.REBY_RIDES <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "REBY RIDES", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "REBY RIDES", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "REBY RIDES", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "REBY RIDES", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
+    const disableZeroMO = () => {
+        if(patinete.MOVO <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "MOVO", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "MOVO", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "MOVO", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "MOVO", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
+    const disableZeroMG = () => {
+        if(patinete.MYGO <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "MYGO", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "MYGO", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "MYGO", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "MYGO", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
+    const disableZeroJU = () => {
+        if(patinete.JUMP_UBER <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "JUMP UBER", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "JUMP UBER", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "JUMP UBER", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "JUMP UBER", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
+    const disableZeroSC = () => {
+        if(patinete.SJV_CONSULTING <= 0){
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' disabled onClick={añadirQuitarPatinete(patinete._id, "SJV CONSULTING", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' disabled onClick={añadirQuitarPatinete(patinete._id, "SJV CONSULTING", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Tooltip title="Añadir patinete">
+                        <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "SJV CONSULTING", patinete.ACCIONA, "AÑADIR")}>
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Quitar patinete">
+                        <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "SJV CONSULTING", patinete.ACCIONA, "QUITAR")}>
+                            <Remove/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            );
+        }
+    }
+
     React.useEffect(() => {
         if(añadirQuitar.current === "AÑADIR"){
             store.dispatch(add(`Agregaste ${contadorPatinete} patinetes de ${compañia} para el barrio de ${patinete.BARRIO}.`));
@@ -36,7 +482,9 @@ export default function TarjetaPatinete({ patinete }) {
                 store.dispatch(add(`Retiraste ${contadorPatinete} patinetes de ${compañia} para el barrio de ${patinete.BARRIO}.`));
             }
         }
-    }, [contadorPatinete, compañia, patinete.BARRIO]);
+        console.log(patinete.Taxify);
+
+    }, [contadorPatinete, compañia, patinete]);
 
     return patinete === true ? (
         <Container >
@@ -163,16 +611,7 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.ACCIONA} patinetes disponibles
                             </CardTitle>
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "ACCIONA", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "ACCIONA", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroA()}
                         </CardBody>
                     </Card>
                 </Col>
@@ -187,16 +626,7 @@ export default function TarjetaPatinete({ patinete }) {
                                 {patinete.Taxify} patinetes disponibles
                             </CardTitle>
                             
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "Taxify", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "Taxify", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroT()}
                         </CardBody>
                     </Card>
                 </Col>
@@ -210,17 +640,7 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.KOKO} patinetes disponibles
                             </CardTitle>
-                            
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "KOKO", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "KOKO", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroK()}
                         </CardBody>
                     </Card>
                 </Col>
@@ -234,17 +654,7 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.UFO} patinetes disponibles
                             </CardTitle>
-                            
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "UFO", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "UFO", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroU()}
                         </CardBody>
                     </Card>
                 </Col>
@@ -258,17 +668,7 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.RIDECONGA} patinetes disponibles
                             </CardTitle>
-                            
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "RIDECONGA", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "RIDECONGA", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroR()}
                         </CardBody>
                     </Card>
                 </Col>
@@ -282,17 +682,7 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.FLASH} patinetes disponibles
                             </CardTitle>
-                            
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "FLASH", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "FLASH", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroF()}
                         </CardBody>
                     </Card>
                 </Col>
@@ -306,17 +696,7 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.LIME} patinetes disponibles
                             </CardTitle>
-                            
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "LIME", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "LIME", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroL()}
                         </CardBody>
                     </Card>
                 </Col>
@@ -330,17 +710,7 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.BIRD} patinetes disponibles
                             </CardTitle>
-                            
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "BIRD", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "BIRD", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroB()}
                         </CardBody>
                     </Card>
                 </Col>
@@ -354,17 +724,7 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.REBY_RIDES} patinetes disponibles
                             </CardTitle>
-                            
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "REBY_RIDES", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "REBY_RIDES", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroRR()}
                         </CardBody>
                     </Card>
                 </Col>
@@ -377,17 +737,7 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.MOVO} patinetes disponibles
                             </CardTitle>
-                            
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "MOVO", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "MOVO", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroMO()}
                         </CardBody>
                     </Card>
                 </Col>
@@ -401,17 +751,7 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.MYGO} patinetes disponibles
                             </CardTitle>
-                            
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "MYGO", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "MYGO", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroMG()}
                         </CardBody>
                     </Card>
                 </Col>
@@ -425,18 +765,8 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.JUMP_UBER} patinetes disponibles
                             </CardTitle>
-                            
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "JUMP_UBER", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "JUMP_UBER", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
-                        </CardBody>
+                            {disableZeroJU()}
+                            </CardBody>
                     </Card>
                 </Col>
                 <Col lg="3" sm="4" md="6" xs="12">
@@ -449,17 +779,7 @@ export default function TarjetaPatinete({ patinete }) {
                             <CardTitle>
                                 {patinete.SJV_CONSULTING} patinetes disponibles
                             </CardTitle>
-                            
-                            <Tooltip title="Añadir patinete">
-                                <IconButton color='success' onClick={añadirQuitarPatinete(patinete._id, "SJV_CONSULTING", patinete.ACCIONA, "AÑADIR")}>
-                                    <Add/>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Quitar patinete">
-                                <IconButton color='error' onClick={añadirQuitarPatinete(patinete._id, "SJV_CONSULTING", patinete.ACCIONA, "QUITAR")}>
-                                    <Remove/>
-                                </IconButton>
-                            </Tooltip>
+                            {disableZeroSC()}
                         </CardBody>
                     </Card>
                 </Col>

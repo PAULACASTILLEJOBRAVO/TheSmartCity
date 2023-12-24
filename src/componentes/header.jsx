@@ -48,9 +48,9 @@ export default function Header() {
 		setState({ ...state, open: false });
 	};
 
-	// React.useEffect(() => {
-	// 	console.log(store.getState());
-	// }, [store]);
+	React.useEffect(() => {
+		console.log(store.getState().informacion);
+	}, [store]);
 		
 	return (
 		<AppBar color='success' position='static'>
