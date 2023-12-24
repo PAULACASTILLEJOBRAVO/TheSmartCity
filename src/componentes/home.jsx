@@ -5,6 +5,7 @@ import { Avatar, AvatarGroup } from '@mui/material';
 import { deepOrange, green, pink, deepPurple } from '@mui/material/colors';
 import './home.css';
 import Slideshow from './slidershow';
+import Map from './map';
 
 function stringToColor(string) {
     let hash = 0;
@@ -54,11 +55,13 @@ export default function Home() {
                             los ciudadanos. </h5>
                     </Col>
                     <Col lg="6" xs="12">
+                        <Map/>
                     </Col>
                 </Row>
                 <hr/>
                 <Row style={{paddingTop: "15%", paddingBottom: "15%"}}>
                     <Col lg="6" xs="12">
+                       
                     </Col>
                     <Col lg="6" xs="12">
                         <h2>Favorecer la movilidad inteligente.</h2>
