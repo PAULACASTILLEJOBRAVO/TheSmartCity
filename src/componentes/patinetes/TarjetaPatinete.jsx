@@ -4,26 +4,39 @@ import {ElectricScooter, Add, Remove} from '@mui/icons-material';
 import {IconButton, Tooltip} from '@mui/material';
 import store from '../../redux/store';
 import { increment } from "../../redux/contador/contador-acciones";
-
+import { add } from '../../redux/informacion/informacion-acciones';
 
 export default function TarjetaPatinete({ patinete }) {
     const [contadorPatinete, setContadorPatinete] = React.useState(0);
     const [compañia, setCompañia] = React.useState("");
+    const añadirQuitar = React.useRef("");
 
     const añadirQuitarPatinete = (id, nombre, valor, boton) => () => {
         store.dispatch(increment())
         if(boton === "AÑADIR"){
             setContadorPatinete(Number(contadorPatinete)+1);
             setCompañia(nombre);
+            añadirQuitar.current = boton;
         }else if(boton === "QUITAR"){
             if(contadorPatinete > 0){
                 setContadorPatinete(Number(contadorPatinete)-1);
                 setCompañia(nombre);
+                añadirQuitar.current = boton;
             }else{
                 alert("No tiene patinetes pedidos.");
             }
         }
     }
+
+    React.useEffect(() => {
+        if(añadirQuitar.current === "AÑADIR"){
+            store.dispatch(add(`Agregaste ${contadorPatinete} patinetes de ${compañia} para el barrio de ${patinete.BARRIO}.`));
+        }else if(añadirQuitar.current === "QUITAR"){
+            if(contadorPatinete > 0){
+                store.dispatch(add(`Retiraste ${contadorPatinete} patinetes de ${compañia} para el barrio de ${patinete.BARRIO}.`));
+            }
+        }
+    }, [contadorPatinete, compañia, patinete.BARRIO]);
 
     return patinete === true ? (
         <Container >

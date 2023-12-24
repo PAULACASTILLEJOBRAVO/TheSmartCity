@@ -39,7 +39,6 @@ export default function ListaPatinetes() {
     });
 
     const handleListItemClick = (event) => () => {
-        console.log(event);
         setPatinetes(event);
         setBarrio(event.BARRIO);
     };
