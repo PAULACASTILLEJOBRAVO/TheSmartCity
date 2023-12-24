@@ -149,7 +149,6 @@ export default function TarjetaPatinete({ patinete }) {
                 </div>
             );
         }else{
-            console.log("mayor a cero")
             return (
                 <div>
                     <Tooltip title="Añadir patinete">
@@ -184,7 +183,6 @@ export default function TarjetaPatinete({ patinete }) {
                 </div>
             );
         }else{
-            console.log("mayor a cero")
             return (
                 <div>
                     <Tooltip title="Añadir patinete">
@@ -482,7 +480,6 @@ export default function TarjetaPatinete({ patinete }) {
                 store.dispatch(add(`Retiraste ${contadorPatinete} patinetes de ${compañia} para el barrio de ${patinete.BARRIO}.`));
             }
         }
-        console.log(patinete.Taxify);
 
     }, [contadorPatinete, compañia, patinete]);
 
