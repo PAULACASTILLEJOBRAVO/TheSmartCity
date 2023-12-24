@@ -5,6 +5,7 @@ import {IconButton, Tooltip} from '@mui/material';
 import store from '../../redux/store';
 import { increment } from "../../redux/contador/contador-acciones";
 import { add } from '../../redux/informacion/informacion-acciones';
+import swal from 'sweetalert';
 
 export default function TarjetaPatinete({ patinete }) {
     const [contadorPatinete, setContadorPatinete] = React.useState(0);
@@ -12,20 +13,26 @@ export default function TarjetaPatinete({ patinete }) {
     const añadirQuitar = React.useRef("");
 
     const añadirQuitarPatinete = (id, nombre, valor, boton) => () => {
-        store.dispatch(increment())
+        
         if(boton === "AÑADIR"){
             if(valor > 0){
+                store.dispatch(increment());
                 setContadorPatinete(Number(contadorPatinete)+1);
                 setCompañia(nombre);
                 añadirQuitar.current = boton;
             }
         }else if(boton === "QUITAR"){
             if(contadorPatinete > 0){
+                store.dispatch(increment());
                 setContadorPatinete(Number(contadorPatinete)-1);
                 setCompañia(nombre);
                 añadirQuitar.current = boton;
             }else{
-                alert("No tiene patinetes pedidos.");
+                swal({
+                    title: "Error",
+                    text: "No tiene patinetes pedidos.", 
+                    icon: "error"
+                });
             }
         }
     }
