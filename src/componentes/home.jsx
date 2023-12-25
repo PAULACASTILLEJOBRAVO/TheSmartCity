@@ -6,6 +6,7 @@ import { deepOrange, green, pink, deepPurple } from '@mui/material/colors';
 import './home.css';
 import Slideshow from './slidershow';
 import Map from './map';
+import ReactPlayer from 'react-player'
 
 function stringToColor(string) {
     let hash = 0;
@@ -61,9 +62,9 @@ export default function Home() {
                 <hr/>
                 <Row style={{paddingTop: "15%", paddingBottom: "15%"}}>
                     <Col lg="6" xs="12">
-                       
+                       <ReactPlayer url="https://youtu.be/4RGObDegoXw?si=ntXMR3nG0JGE_p_p" playing={true} loop={true} controls={true} />
                     </Col>
-                    <Col lg="6" xs="12">
+                    <Col lg="6" xs="12" style={{paddingTop: "5%"}}>
                         <h2>Favorecer la movilidad inteligente.</h2>
                         <h5>Especializándonos en el trasporte urbano más beneficioso para
                             la salud, hemos implementado en Talavera de la Reina la construcción de 
