@@ -9,7 +9,7 @@ const options = [
   'Ayuda',
   'Idioma',
   'Acerca de',
-  'Log out'
+  'Logout'
 ];
 
 const ITEM_HEIGHT = 30;

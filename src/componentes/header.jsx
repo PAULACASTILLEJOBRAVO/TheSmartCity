@@ -10,7 +10,7 @@ import LongMenu from './menu';
 import store from '../redux/store';
 import { reset } from "../redux/contador/contador-acciones";
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Home', 'Logout'];
 
 export default function Header() {
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -32,7 +32,11 @@ export default function Header() {
 	};
 
 	const handleMove = event => {
-		navigate("/"+event.nativeEvent.target.outerText);
+		if(event.nativeEvent.target.outerText === "Home"){
+			navigate("/");
+		}else{
+			navigate("/"+event.nativeEvent.target.outerText);
+		}
 	};
 
 	const handleOpenNotification = (newState) => () => {
