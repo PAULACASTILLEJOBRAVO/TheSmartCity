@@ -5,6 +5,7 @@ import Home from './home';
 import Patinetes from './patinetes/ListaPatinetes';
 import BicicletasDisponibles from './bicicletas/GraficaBicicletaDisponibles';
 import NotFound from './NotFound';
+import Login from './Login';
 
 function App() {
   return (
@@ -12,10 +13,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/Accidentes' element={<Accidentes/>}/>
-          <Route path='/' element={<Home/>}/>
+          <Route path='/Home' element={<Home/>}/>
           <Route path='/Patinetes' element={<Patinetes/>}/>
           <Route path='/Disponibilidad' element={<BicicletasDisponibles/>}/>
           <Route path="*" element={<NotFound />} />
+          <Route path='/' element={<Login/>}/>
         </Routes>
       </BrowserRouter>
     </div>

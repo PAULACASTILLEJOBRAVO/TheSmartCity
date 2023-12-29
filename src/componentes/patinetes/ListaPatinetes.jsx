@@ -35,8 +35,8 @@ export default function ListaPatinetes() {
                     return distrtitosDuplicados.indexOf(item) === index;
                   })
                 }
-            }, [])
-    });
+            })
+    }, []);
 
     const handleListItemClick = (event) => () => {
         setPatinetes(event);
