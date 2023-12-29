@@ -34,8 +34,8 @@ export default function TablaAccidente() {
         axios.get('https://anthemmanifest.onrender.com/accidentalidad')
             .then((resultado) => {
                 setRows(resultado.data);
-            })
-    }, []);
+            }, [])
+    });
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);

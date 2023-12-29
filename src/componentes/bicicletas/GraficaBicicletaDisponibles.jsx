@@ -211,8 +211,8 @@ export default function GraficaBicicletaDisponible() {
                         },
                     ],
                 });
-            });
-    }, []);
+            }, []);
+    });
 
     return rows.length === 0 ? (
         <div style={{ textAlign: "center" }}>
