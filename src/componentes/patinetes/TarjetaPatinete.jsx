@@ -53,10 +53,10 @@ export default function TarjetaPatinete({ patinete }) {
 
     React.useEffect(() => {
         if(añadirQuitar.current === "AÑADIR"){
-            store.dispatch(add(`Agregaste ${contadorPatinete} patinetes de ${compañia} para el barrio de ${patinete.BARRIO}.`));
+            store.dispatch(add(`Tienes solicitados ${contadorPatinete} patinetes de ${compañia} para el barrio de ${patinete.BARRIO}.`));
         }else if(añadirQuitar.current === "QUITAR"){
             if(contadorPatinete >= 0){
-                store.dispatch(add(`Retiraste ${contadorPatinete} patinetes de ${compañia} para el barrio de ${patinete.BARRIO}.`));
+                store.dispatch(add(`Tienes solicitados ${contadorPatinete} patinetes de ${compañia} para el barrio de ${patinete.BARRIO}.`));
             }
         }
     }, [contadorPatinete, compañia, patinete]);
