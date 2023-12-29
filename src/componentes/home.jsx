@@ -62,7 +62,7 @@ export default function Home() {
                 <hr/>
                 <Row style={{paddingTop: "15%", paddingBottom: "15%"}}>
                     <Col lg="6" xs="12">
-                       <ReactPlayer url="https://youtu.be/we8d_meqnfQ?si=fc8ZlEH4j4jVEVmw" playing={true} loop={true} controls={true} />
+                       <ReactPlayer url="https://youtu.be/we8d_meqnfQ?si=fc8ZlEH4j4jVEVmw" width="100%" height="100%" playing={true} loop={true} controls={true} />
                     </Col>
                     <Col lg="6" xs="12" style={{paddingTop: "5%"}}>
                         <h2>Favorecer la movilidad inteligente.</h2>
