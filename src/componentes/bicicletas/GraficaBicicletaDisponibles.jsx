@@ -229,16 +229,16 @@ export default function GraficaBicicletaDisponible() {
             <Container>
                 <Row > 
                     <Col style={{ paddingBottom: "4%"}} lg="6" xs="12"> 
-                        <h3>Número de viajes efectuados por usuario en bicicleta por Madrid</h3>
+                        <h3>Número de viajes efectuados por usuario en bicicleta por Talavera</h3>
                         <Bar data={barHorData} options={barHorizontalOptions}/>
                         <hr/>
-                        <h3>Media de horas de servicio de bicicletas por día para Madrid</h3>
+                        <h3>Media de horas de servicio de bicicletas por día para Talavera</h3>
                         <Line data={lineData} options={lineOptions}/>  
                         <hr/>
                     </Col>
                     <Col lg="6" style={{paddingLeft: "5%"}}>
                         <div style={{position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', }}>
-                            <h3 >Total de viajes en bicicleta por día en Madrid</h3>
+                            <h3 >Total de viajes en bicicleta por día en Talavera</h3>
                             <Bar data={barVerData} options={barVerticaloptions}/>
                         </div>
                     </Col>
