@@ -8,7 +8,7 @@ export default function NotFound() {
         <h1 style={{paddingTop: "20%"}}>404</h1>
         <h2>Page not found</h2>
         <p>
-          <Link to="/">Volver a Home</Link>
+          <Link to="/Home">Volver a Home</Link>
         </p>
       </div>
     </div>
