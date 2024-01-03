@@ -21,11 +21,9 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`Email: ${email}, Password: ${password}`);
-    
     // Aquí puedes realizar la lógica de autenticación con el servidor
     // mediante una función para autenticar los datos
-    login(email, password, e);
+    login(email, password);
   };
 
   const login = (email, password) => {
@@ -45,6 +43,10 @@ const Login = () => {
   sessionStorage.setItem('email', email);
   navigate("/home");
 }
+
+React.useEffect(() => {
+  console.log(`Email: ${email}, Password: ${password}`);
+}, [email, password])
 
   const inputContainerStyle = {
     display: 'flex',
