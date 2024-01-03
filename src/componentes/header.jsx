@@ -92,6 +92,8 @@ export default function Header() {
 	const handleMove = event => {
 		if(event.nativeEvent.target.outerText === "Home"){
 			navigate("/");
+		}else if(event.nativeEvent.target.outerText === "Logout"){
+			onLogout();
 		}else{
 			navigate("/"+event.nativeEvent.target.outerText);
 		}
@@ -109,6 +111,11 @@ export default function Header() {
 	
 		setState({ ...state, open: false });
 	};
+
+	const onLogout = () => {
+		sessionStorage.clear();
+		navigate("/");
+	}
 
 	React.useEffect(() => {
 		console.log(store.getState().informacion);
@@ -203,6 +210,7 @@ export default function Header() {
 					))}
 					</Menu>
 				</Box>
+				<button class="btn btn-dark" onClick={onLogout} >Logout</button>
 			</Toolbar>
 		</AppBar>
 	);
