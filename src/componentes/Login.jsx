@@ -1,35 +1,57 @@
 import React, { useState } from 'react';
 import backgroundImage from '../imagenes/bici.png'; // Ruta a tu imagen de fondo
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginMessage, setloginMessage] = useState(null);
 
   const navigate = useNavigate();
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleEmailChange = (email) => {
+    setEmail(email.target.value);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handlePasswordChange = (password) => {
+    setPassword(password.target.value);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(`Email: ${email}, Password: ${password}`);
+    
+    // Aquí puedes realizar la lógica de autenticación con el servidor
+    // mediante una función para autenticar los datos
+    login(email, password, e);
+  };
+
+  const login = (email, password) => {
+    axios.post("https://anthemmanifest.onrender.com/users/signin", {
+      email: email, 
+      password: password
+    }).then(result => {
+      setloginMessage(result.data.message);
+      console.log(loginMessage);
+      onSuccess(loginMessage);
+    }).catch(err => console.log(err)); 
+ }
+
+ const onSuccess = (res) => { 
+  console.log(jwtDecode(res).email);
+  var email=jwtDecode(res).email; //
+  sessionStorage.setItem('email', email);
+  navigate("/home");
+}
+
   const inputContainerStyle = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'start',
     marginBottom: '20px',  // Agrega esto
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí puedes realizar la lógica de autenticación con el servidor
-    // Por ahora, simplemente mostramos los datos en la consola
-    console.log(`Email: ${email}, Password: ${password}`);
-    // También podrías llamar a una función para autenticar los datos
-    navigate("/Home")
-  };
-
   const loginStyle = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
@@ -77,7 +99,7 @@ const Login = () => {
       <form style={formStyle} onSubmit={handleSubmit}>
         <h2>Iniciar sesión</h2>
         <div style={inputContainerStyle}>
-  <label style={labelStyle}>Username:</label>
+  <label style={labelStyle}>Email:</label>
   <input type="text" style={inputStyle} value={email} onChange={handleEmailChange} required/>
 </div>
 
