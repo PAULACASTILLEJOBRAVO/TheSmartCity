@@ -32,21 +32,15 @@ const Login = () => {
       password: password
     }).then(result => {
       setloginMessage(result.data.message);
-      console.log(loginMessage);
       onSuccess(loginMessage);
     }).catch(err => console.log(err)); 
  }
 
  const onSuccess = (res) => { 
-  console.log(jwtDecode(res).email);
   var email=jwtDecode(res).email; //
   sessionStorage.setItem('email', email);
   navigate("/home");
 }
-
-React.useEffect(() => {
-  console.log(`Email: ${email}, Password: ${password}`);
-}, [email, password])
 
   const inputContainerStyle = {
     display: 'flex',
@@ -101,15 +95,14 @@ React.useEffect(() => {
       <form style={formStyle} onSubmit={handleSubmit}>
         <h2>Iniciar sesión</h2>
         <div style={inputContainerStyle}>
-  <label style={labelStyle}>Email:</label>
-  <input type="text" style={inputStyle} value={email} onChange={handleEmailChange} required/>
-</div>
-
-<div style={inputContainerStyle}>
-  <label style={labelStyle}>Password:</label>
-  <input type="password" style={inputStyle} value={password} onChange={handlePasswordChange} required/>
-</div>
-<input type="submit" value="Iniciar sesión" style={buttonStyle} />      </form>
+          <label style={labelStyle}>Email:</label>
+          <input type="text" style={inputStyle} value={email} onChange={handleEmailChange} required/>
+        </div>
+      <div style={inputContainerStyle}>
+        <label style={labelStyle}>Password:</label>
+        <input type="password" style={inputStyle} value={password} onChange={handlePasswordChange} required/>
+      </div>
+      <input type="submit" value="Iniciar sesión" style={buttonStyle} />      </form>
     </div>
   );
 };

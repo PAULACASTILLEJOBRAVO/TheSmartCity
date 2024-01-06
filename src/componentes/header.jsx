@@ -119,7 +119,6 @@ export default function Header() {
 
 	React.useEffect(() => {
 		console.log(store.getState().informacion);
-		console.log(sessionStorage.getItem('email'));
 	}, [store]);
 		
 	return (

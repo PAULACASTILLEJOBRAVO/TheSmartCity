@@ -68,8 +68,6 @@ export default function TablaAccidente() {
                                 <StyledTableCell align="right">Sexo</StyledTableCell>
                                 <StyledTableCell align="right">Rango de edad</StyledTableCell>
 
-                                <StyledTableCell align="right">Alcoholemia</StyledTableCell>
-                                <StyledTableCell align="right">Examen toxicológico</StyledTableCell>
                             </TableRow>
                         </TableHead>
                     </Table>
@@ -113,8 +111,6 @@ export default function TablaAccidente() {
                                 <StyledTableCell align="right">Rango de edad</StyledTableCell>
 
 
-                                <StyledTableCell align="right">Alcoholemia</StyledTableCell>
-                                <StyledTableCell align="right">Examen toxicológico</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -133,8 +129,6 @@ export default function TablaAccidente() {
                                     <StyledTableCell align="right">{row.sexo}</StyledTableCell>
                                     <StyledTableCell align="right">{row.rango_edad}</StyledTableCell>
 
-                                    <StyledTableCell align="right">{row.positivo_alcohol}</StyledTableCell>
-                                    <StyledTableCell align="right">{row.positivo_droga}</StyledTableCell>
                                 </StyledTableRow>
                             ))}
                         </TableBody>
