@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
-import PedalBike from '@mui/icons-material/PedalBike';
+import {PedalBike, Phone, Fax, Email} from '@mui/icons-material/';
 
 export default function App() {
   return (
@@ -12,8 +12,8 @@ export default function App() {
                     <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
                         
                         <h6 className='text-uppercase fw-bold mb-4' align="center">
+                            Anthem
                             <PedalBike/>
-                            The Smart City
                         </h6>
                         <p align="justify">
                         En esta ciudad se quiere implantar un sistema de uso común de bicicletas para combatir 
@@ -25,13 +25,13 @@ export default function App() {
                     <h6 className=' fw-bold mb-4'>Contáctanos</h6>
                     <p>
                         <MDBIcon icon="envelope" className="me-3" />
-                        thesmartcity@gmail.com
+                        <Email/>thesmartcity@gmail.com
                     </p>
                     <p>
-                        <MDBIcon icon="phone" className="me-3" /> +34  643 56 07 88
+                        <MDBIcon icon="phone" className="me-3" /> <Phone/> +34  643 56 07 88
                     </p>
                     <p>
-                        <MDBIcon icon="print" className="me-3" /> +34 643 56 07 89
+                        <MDBIcon icon="print" className="me-3" /> <Fax/> +34 643 56 07 89
                     </p>
                     </MDBCol>
                 </MDBRow>
