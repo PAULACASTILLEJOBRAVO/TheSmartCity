@@ -163,7 +163,7 @@ export default function Header() {
 						id="long-button"
 						color="inherit"
 						aria-haspopup="true"
-						href='/'
+						href='/Home'
 					>
 						<Home />
 					</IconButton> 				
